@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 
 module.exports.login = (request, response, next) => {
   let token;
+  console.log(request.body);
   if (request.body.email == 'm@m.m' && request.body.password == '123') {
     token = jwt.sign({
       email: request.body.email,
