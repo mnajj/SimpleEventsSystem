@@ -1,15 +1,21 @@
 const express = require('express');
 const body_parser = require('body-parser');
-// const mongoose = require('mongoose');
+const dotenv = require("dotenv").config();
+const mongoose = require('mongoose');
 
 const authRouter = require('./Routers/authRouter');
 
-
+mongoose.connect(process.env.MONGODB_CONNECTION_STRING)
+.then(() => {
+  console.log('DB Connected Successfully!');
+  server.listen(process.env.PORT || 8080, () => {
+    console.log('Listening....');
+  });
+})
+.catch(error => console.log("Can't Connect to DB!"));
 const server = express();
 
-server.listen(process.env.PORT || 8080, () => {
-  console.log('Listening....');
-});
+
 
 // Logger MW
 server.use((request, response, next) => {
