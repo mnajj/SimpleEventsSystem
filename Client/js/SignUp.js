@@ -60,3 +60,25 @@
   }
 })(jQuery);
 
+function showSpeakerFields() {
+  let ch = document.getElementById('ckb1');
+  if (ch.checked) {
+    document.getElementById('userNameFld').style.display = 'block';
+    document.getElementById('addressFld').style.display = 'block';
+  } else {
+    document.getElementById('userNameFld').style.display = 'none';
+    document.getElementById('addressFld').style.display = 'none';
+  }
+}
+
+function signUserUp() {
+  let mail = document.getElementById('mailFld').value;
+  let mailVal = /^[a-zA-Z0-9\-_]+(\.[a-zA-Z0-9\-_]+)*@[a-z0-9]+(\-[a-z0-9]+)*(\.[a-z0-9]+(\-[a-z0-9]+)*)*\.[a-z]{2,4}$/;
+  if(mailVal.test(mail)) {
+    let userName = document.getElementById('userNameFldTxt').value;
+    let psw = document.getElementById('pswFld').value;
+    let addrs = document.getElementById('addressFldTxt').value;
+  } else {
+    alert(`Invalid email address: ${mail}`);
+  }
+}

@@ -29,25 +29,36 @@
 						Sign Up
 					</span>
 
+					<div id="userNameFld" class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz" style="display: none;">
+						<input id="userNameFldTxt" class="input100" type="text" name="email">
+						<span class="focus-input100"></span>
+						<span class="label-input100">User Name</span>
+					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email">
+						<input id="mailFld" class="input100" type="text" name="email">
 						<span class="focus-input100"></span>
 						<span class="label-input100">Email</span>
 					</div>
 
 
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="pass">
+						<input id="pswFld" class="input100" type="password" name="pass">
 						<span class="focus-input100"></span>
 						<span class="label-input100">Password</span>
 					</div>
 
+					<div id="addressFld" class="wrap-input100 validate-input" data-validate="Password is required" style="display: none;">
+						<input id="addressFldTxt" class="input100" type="password" name="pass">
+						<span class="focus-input100"></span>
+						<span class="label-input100">Address</span>
+					</div>
+
 					<div class="flex-sb-m w-full p-t-3 p-b-32">
 						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me" onclick="showSpeakerFields()">
 							<label class="label-checkbox100" for="ckb1">
-								Remember me
+								Speaker
 							</label>
 						</div>
 
@@ -60,14 +71,14 @@
 
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" type="button" onclick="logIn()">
-							Login
+						<button class="login100-form-btn" type="button" onclick="signUserUp()">
+							Sign Up
 						</button>
 					</div>
 
 					<div class="text-center p-t-46 p-b-20">
 						<span class="txt2">
-							or sign up using
+							Log In
 						</span>
 					</div>
 
@@ -85,7 +96,7 @@
 					</div>
 				</form>
 
-				<div class="login100-more" style="background-image: url('../images/bg-01.jpg');">
+				<div class="login100-more" style="background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');">
 				</div>
 			</div>
 		</div>
@@ -99,6 +110,7 @@
 	<script src="../vendor/daterangepicker/moment.min.js"></script>
 	<script src="../vendor/daterangepicker/daterangepicker.js"></script>
 	<script src="../vendor/countdowntime/countdowntime.js"></script>
+	<script src="../js/httpRequest.js"></script>
 	<script src="../js/SignUp.js"></script>
 </body>
 
