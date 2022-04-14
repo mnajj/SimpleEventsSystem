@@ -60,24 +60,37 @@
   }
 })(jQuery);
 
+let role = 'student';
+
 function showSpeakerFields() {
   let ch = document.getElementById('ckb1');
   if (ch.checked) {
     document.getElementById('userNameFld').style.display = 'block';
     document.getElementById('addressFld').style.display = 'block';
+    role = 'speaker';
   } else {
     document.getElementById('userNameFld').style.display = 'none';
     document.getElementById('addressFld').style.display = 'none';
+    role = 'student';
   }
 }
 
-function signUserUp() {
+async function signUserUp() {
+  let reqResult;
   let mail = document.getElementById('mailFld').value;
   let mailVal = /^[a-zA-Z0-9\-_]+(\.[a-zA-Z0-9\-_]+)*@[a-z0-9]+(\-[a-z0-9]+)*(\.[a-z0-9]+(\-[a-z0-9]+)*)*\.[a-z]{2,4}$/;
   if(mailVal.test(mail)) {
     let userName = document.getElementById('userNameFldTxt').value;
     let psw = document.getElementById('pswFld').value;
     let addrs = document.getElementById('addressFldTxt').value;
+    let data = {
+      email: mail,
+      userName: userName,
+      password: psw,
+      address: addrs,
+      role: role
+    };
+    reqResult = await httpPOST(data, API + '/signup');
   } else {
     alert(`Invalid email address: ${mail}`);
   }

@@ -60,16 +60,15 @@
   }
 })(jQuery);
 
-window.API = 'http://localhost:8080';
-window.JWT = '';
-
-function logIn() {
+async function logIn() {
+  let reqResult;
   let data = {
     email: "m@m.m",
     password: "123"
   }
   let url = API + '/login';
-  httpPOST(data, url);
+  reqResult = await httpPOST(data, url);
+  console.log(reqResult);
 }
 
 function redirectToSignUpPage() {
