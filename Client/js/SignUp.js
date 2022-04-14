@@ -60,32 +60,3 @@
   }
 })(jQuery);
 
-window.API = 'http://localhost:8080';
-window.JWT = '';
-
-function logIn() {
-  let data = {
-    email: "m@m.m",
-    password: "123"
-  }
-  let url = API + '/login';
-  httpPostRequest(data, url);
-}
-
-function httpPostRequest(data, url) {
-  fetch(url, {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-    .then(response => response.json())
-    .then(json => console.log(json))
-    .catch(err => console.log(err));
-}
-
-function redirectToSignUpPage() {
-  console.log("hhh");
-  location.replace('../Pages/SignUp.html');
-}

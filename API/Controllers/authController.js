@@ -14,3 +14,7 @@ module.exports.login = (request, response, next) => {
     next(new Error("User name and password incorrect"));
   }
 }
+
+module.exports.signUp = (request, response, next) => {
+  response.status(200).json({message: "Arrived!"});
+}
