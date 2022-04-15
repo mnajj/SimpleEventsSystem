@@ -1,10 +1,7 @@
 window.API = 'http://localhost:8080';
-let token = JSON.parse(localStorage.getItem('userToken'));
-if (token == undefined) {
-  token = '';
-}
 
 function httpPOST(data, url) {
+  let token = getUserToken();
   return fetch(url, {
     method: "POST",
     body: JSON.stringify(data),
@@ -32,6 +29,7 @@ function httpPOST(data, url) {
 // }
 
 function httpGET(url) {
+  let token = getUserToken();
   return fetch(url, {
     method: "GET",
     headers: {
@@ -48,4 +46,15 @@ function httpGET(url) {
 
 function saveJWTToLocalStorage(token) {
   localStorage.setItem('userToken', JSON.stringify(token));
+}
+
+function getUserToken() {
+  let token;
+  try {
+    token = JSON.parse(localStorage.getItem('userToken'));
+  } catch (error) {
+    localStorage.clear();
+    token = '';
+  }
+  return token;
 }

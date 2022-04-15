@@ -76,7 +76,13 @@ async function logIn() {
   }
   reqResult = await reqResult.json();
   saveJWTToLocalStorage(reqResult.token);
-  location.replace('../Pages/Index.html');
+  console.log(reqResult)
+  console.log(reqResult.role)
+  if (reqResult.role == 'admin') {
+    location.replace('../Pages/Dashboard.html');
+  } else {
+    // location.replace('../Pages/Index.html');
+  }
 }
 
 function redirectToSignUpPage() {

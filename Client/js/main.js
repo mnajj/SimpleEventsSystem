@@ -272,7 +272,9 @@ async function getEventsData() {
       <div class="product-text">
         <h1>${reqResult.data[i].title}</h1>
         <h2>${reqResult.data[i].date.split("T")[0]}</h2>
-        <p></p>
+        <h5>Main Speaker: ${reqResult.data[i].mainSpeaker.userName}</h5>
+        <p>ITI software engineering event for new entrants to ITI recruitment will be held in March. It is being organized by the Information Technology Institute (ITI).</p>
+        <p>Attendance Number: ${reqResult.data[i].students.length}</p>
       </div>
       <div class="product-price-btn">
         <button type="button">View</button>

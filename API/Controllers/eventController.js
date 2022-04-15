@@ -6,14 +6,16 @@ const Event = require("./../Models/eventModel");
 module.exports.getEventsData = (request, response, next) => {
   if (request.body.role == 'speaker') {
     Event.find({ mainSpeaker: request.body.id, otherSpeakers: request.body.id })
-      .populate('speaker')
-      .populate('student')
+      .populate('mainSpeaker')
+      .populate('otherSpeakers')
+      .populate('students')
       .then(data => response.status(200).json({ data }))
       .catch(error => next(error));
   } else if (request.body.role == 'student') {
     Event.find({ students: request.body.id })
-      // .populate('speaker')
-      .populate('student')
+      .populate('mainSpeaker')
+      .populate('otherSpeakers')
+      .populate('students')
       .then(data => response.status(200).json({ data }))
       .catch(error => next(error));
   } else {

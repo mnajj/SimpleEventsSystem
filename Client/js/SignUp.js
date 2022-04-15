@@ -94,6 +94,7 @@ async function signUserUp() {
     reqResult = await httpPOST(data, API + '/signup');
     alert("Account registered successfully!");
     saveJWTToLocalStorage(reqResult.token);
+    location.replace('../Pages/Index.html');
   } else {
     alert(`Invalid email address: ${mail}`);
   }

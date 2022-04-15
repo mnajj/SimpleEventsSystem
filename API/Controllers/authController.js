@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const { validationResult } = require("express-validator");
 const Speaker = require("./../Models/speakerModel");
 const Student = require("./../Models/studentModel");
+const Admin = require("./../Models/adminModel");
 
 module.exports.login = (request, response, next) => {
   let token;
@@ -11,23 +12,46 @@ module.exports.login = (request, response, next) => {
         Speaker.findOne({ email: request.body.email })
           .then(data => {
             if (data == null) {
-              next(new Error("you've not been registered yet"));
+              Admin.findOne({ email: request.body.email })
+                .then(data => {
+                  if (data == null) {
+                    next(new Error("you've not been registered yet"));
+                  } else {
+                    Admin.findOne({ email: request.body.email, password: request.body.password })
+                      .then(data => {
+                        if (data == null) {
+                          throw new Error("userName and password incorrect");
+                        }
+                        token = jwt.sign({
+                          email: data.email,
+                          password: data.password,
+                          id: data.id,
+                          role: "admin"
+                        },
+                          process.env.JWT_KEY,
+                          { expiresIn: "1h" });
+                        response.status(200).json({ msg: "login succeeded!", token, role: "admin" });
+                      })
+                      .catch(error => next(error));
+                  }
+                })
+            } else {
+              Speaker.findOne({ email: request.body.email, password: request.body.password })
+                .then(data => {
+                  if (data == null)
+                    throw new Error("userName and password incorrect");
+                  token = jwt.sign({
+                    email: data.email,
+                    password: data.password,
+                    id: data.id,
+                    role: "speaker"
+                  },
+                    process.env.JWT_KEY,
+                    { expiresIn: "1h" });
+                  response.status(200).json({ msg: "login succeeded!", token });
+                })
+                .catch(error => next(error));
             }
-            Speaker.findOne({ email: request.body.email, password: request.body.password })
-              .then(data => {
-                if (data == null)
-                  throw new Error("userName and password incorrect");
-                token = jwt.sign({
-                  email: data.email,
-                  password: data.password,
-                  id: data.id,
-                  role: "speaker"
-                },
-                  process.env.JWT_KEY,
-                  { expiresIn: "1h" });
-                response.status(200).json({ msg: "login succeeded!", token });
-              })
-              .catch(error => next(error));
           });
       } else {
         Student.findOne({ email: request.body.email, password: request.body.password })
@@ -95,7 +119,7 @@ module.exports.signUp = (request, response, next) => {
       })
       .catch(error => next(error));
   } else {
-    let error = new Error('Must define the account role!');
+    let error = new Error("Account role isn't defined or role is unrecognizable");
     error.status = 422;
     throw error;
   }
