@@ -62,13 +62,21 @@
 
 async function logIn() {
   let reqResult;
+  let mail = document.getElementById('mailFld').value;
+  let psw = document.getElementById('pswFld').value;
   let data = {
-    email: "m@m.m",
-    password: "123"
+    email: mail,
+    password: psw
   }
   let url = API + '/login';
   reqResult = await httpPOST(data, url);
-  console.log(reqResult);
+  if (!reqResult.ok) {
+    reqResult.json()
+      .then(res => alert(res.message));
+  }
+  reqResult = await reqResult.json();
+  saveJWTToLocalStorage(reqResult.token);
+  location.replace('../Pages/Index.html');
 }
 
 function redirectToSignUpPage() {

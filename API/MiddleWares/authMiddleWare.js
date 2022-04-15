@@ -5,8 +5,10 @@ module.exports = (request, response, next) => {
   try {
     token = request.get("Authorization").split(' ')[1];
     decodedToken = jwt.verify(token, process.env.JWT_KEY);
-    console.log(decodedToken);
   } catch (error) {
     next(new Error("Not Authenticated"));
   }
+  request.body.role = decodedToken.role;
+  request.body.id = decodedToken.id;
+  next();
 }

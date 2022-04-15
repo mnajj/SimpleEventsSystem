@@ -90,7 +90,10 @@ async function signUserUp() {
       address: addrs,
       role: role
     };
+    console.log(data);
     reqResult = await httpPOST(data, API + '/signup');
+    alert("Account registered successfully!");
+    saveJWTToLocalStorage(reqResult.token);
   } else {
     alert(`Invalid email address: ${mail}`);
   }

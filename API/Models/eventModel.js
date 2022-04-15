@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 
+// mongoose.set("strictPopulate", false);
 let eventSchema = mongoose.Schema({
-  id: Number,
+  _id: Number,
   title: {type: String, required: true},
   date: Date,
   mainSpeaker: {type: Number, ref: 'speaker'},
@@ -10,6 +11,6 @@ let eventSchema = mongoose.Schema({
   students: [{ type: Number, ref: 'student'}]
 });
 
-eventSchema.plugin(AutoIncrement, { id: 'event_id', inc_field: 'id' });
+eventSchema.plugin(AutoIncrement, { id: 'event_id', inc_field: '_id' });
 
 module.exports = mongoose.model('event', eventSchema);

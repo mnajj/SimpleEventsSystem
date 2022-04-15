@@ -7,18 +7,19 @@ const cors = require('cors');
 
 
 const authRouter = require('./Routers/authRouter');
+const eventRouter = require('./Routers/eventRouter');
 
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING)
-.then(() => {
-  console.log('DB Connected Successfully!');
-  app.listen(process.env.PORT || 8080, () => {
-    console.log('Listening....');
-  });
-})
-.catch(error => console.log("Can't Connect to DB!"));
+  .then(() => {
+    console.log('DB Connected Successfully!');
+    app.listen(process.env.PORT || 8080, () => {
+      console.log('Listening....');
+    });
+  })
+  .catch(error => console.log("Can't Connect to DB!"));
 
 // CORS
-app.use(cors({origin: '*'}));
+app.use(cors({ origin: '*' }));
 // body parsing middleware
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({ extended: true }));
@@ -31,13 +32,14 @@ app.use((request, response, next) => {
 
 // Routers
 app.use(authRouter);
+app.use(eventRouter);
 
 // Not Found MW
 app.use((request, response) => {
   response.status(404).json(({ message: "Page not Found!" }));
 });
 
-// Error MW
+// ErrorHandler MW
 app.use((error, request, response, next) => {
   response.status(500).json(({ message: `${error}` }));
 });
