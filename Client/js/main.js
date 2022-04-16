@@ -264,7 +264,7 @@
 
 async function getEventsData() {
   let reqResult;
-  reqResult = await httpGET(API + '/event');
+  reqResult = await httpGET('/event');
   let cardCont = document.getElementById('card-container');
   for (let i = 0; i < reqResult.data.length; i++) {
     let elem = `<div class="card">

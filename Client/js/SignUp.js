@@ -91,7 +91,7 @@ async function signUserUp() {
       role: role
     };
     console.log(data);
-    reqResult = await httpPOST(data, API + '/signup');
+    reqResult = await httpPOST(data, '/signup');
     alert("Account registered successfully!");
     saveJWTToLocalStorage(reqResult.token);
     location.replace('../Pages/Index.html');

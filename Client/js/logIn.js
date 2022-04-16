@@ -68,7 +68,7 @@ async function logIn() {
     email: mail,
     password: psw
   }
-  let url = API + '/login';
+  let url = '/login';
   reqResult = await httpPOST(data, url);
   if (!reqResult.ok) {
     reqResult.json()
@@ -76,12 +76,10 @@ async function logIn() {
   }
   reqResult = await reqResult.json();
   saveJWTToLocalStorage(reqResult.token);
-  console.log(reqResult)
-  console.log(reqResult.role)
   if (reqResult.role == 'admin') {
     location.replace('../Pages/Dashboard.html');
   } else {
-    // location.replace('../Pages/Index.html');
+    location.replace('../Pages/Index.html');
   }
 }
 

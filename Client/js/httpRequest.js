@@ -1,6 +1,7 @@
 window.API = 'http://localhost:8080';
 
-function httpPOST(data, url) {
+function httpPOST(data, route) {
+  let url = API + route;
   let token = getUserToken();
   return fetch(url, {
     method: "POST",
@@ -28,7 +29,8 @@ function httpPOST(data, url) {
 //   return response.json();
 // }
 
-function httpGET(url) {
+function httpGET(route) {
+  let url = API + route;
   let token = getUserToken();
   return fetch(url, {
     method: "GET",
