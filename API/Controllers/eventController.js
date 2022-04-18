@@ -18,6 +18,13 @@ module.exports.getEventsData = (request, response, next) => {
       .populate('students')
       .then(data => response.status(200).json({ data }))
       .catch(error => next(error));
+  } else if (request.body.role == 'admin') {
+    Event.find()
+    .populate('mainSpeaker')
+    .populate('otherSpeakers')
+    .populate('students')
+    .then(data => response.status(200).json({ data }))
+    .catch(error => next(error));
   } else {
     next(new Error('undefined role'));
   }
@@ -43,4 +50,14 @@ module.exports.addEvent = (request, response, next) => {
       response.status(201).json({ message: "Event Added!", newEvent });
     })
     .catch(error => next(error));
+}
+
+module.exports.deleteEvent = (request, response, next) => {
+  Event.remove({title: request.body.title}, (error) => {
+    if (!error) {
+      response.status(200).json({ message: "Event Deleted Successfully!" });
+    } else {
+      next(new Error("Can't delete Event from system"));
+    }
+  });
 }

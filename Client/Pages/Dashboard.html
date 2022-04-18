@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="./../css/app.css">
   <link rel="shortcut icon" href="./../images/favicon.svg" type="image/x-icon">
   <link rel="stylesheet" href="./../css/main.css">
+
 </head>
 
 <body>
@@ -253,13 +254,13 @@
                       <span>Add</span>
                     </a>
 
-                    <a href="#" class='btn btn-block btn-xl btn-light-primary font-bold mt-3 m-1'
-                      style="background-color:#ffea80">
+                    <a href="#edit-event-modal" class='btn btn-block btn-xl btn-light-primary font-bold mt-3 m-1'
+                      style="background-color:#ffea80" onclick="fillEventModalList()">
                       <span>Edit</span>
                     </a>
 
-                    <a href="#" class='btn btn-block btn-xl btn-light-primary font-bold mt-3 m-1'
-                      style="background-color:#ff7976">
+                    <a href="#delete-event-modal" class='btn btn-block btn-xl btn-light-primary font-bold mt-3 m-1'
+                      style="background-color:#ff7976" onclick="fillEventModalList()">
                       <span>Delete</span>
                     </a>
                   </div>
@@ -267,7 +268,7 @@
 
 
 
-                <!-- Modal -->
+                <!-- Add Modal -->
                 <div id="add-event-modal" class="modal-window">
                   <div>
                     <a href="#" title="Close" class="modal-close">Close</a>
@@ -284,25 +285,95 @@
                     </div>
                     <!-- Text Field -->
                     <div class="wrap-input100 validate-input">
-                      <!-- <input id="title-fld" class="input100" type="text" name="date" placeholder="Main Speaker"> -->
                       <span>&nbsp &nbsp Main Speaker</span>
-                      <select  class="input100" name="cars" id="cars" style="border-style: none;">
+                      <select class="input100" name="cars" id="cars" style="border-style: none;">
                       </select>
                     </div>
                     <!-- Text Field -->
                     <div class="wrap-input100 validate-input">
                       <span>&nbsp &nbsp Other Speakers</span>
-                      <input id="title-fld" class="input100" type="text" name="date" placeholder="Other Speakers">
+                      <select class="input100" name="cars" id="cars" style="border-style: none;">
+
+                      </select>
                     </div>
                     <!-- Text Field -->
                     <div class="wrap-input100 validate-input">
+                      <span>&nbsp &nbsp Students</span>
                       <input id="title-fld" class="input100" type="text" name="date" placeholder="Students">
-                      <span class="focus-input100"></span>
                     </div>
                     <!-- Submit -->
                     <div class="container-login100-form-btn">
                       <button class="login100-form-btn" type="button">
                         Add
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Edit Modal -->
+                <div id="edit-event-modal" class="modal-window">
+                  <div>
+                    <a href="#" title="Close" class="modal-close" >Close</a>
+                    <!-- <h1>Edit Event</h1> -->
+                    <!-- Text Field -->
+                    <div class="wrap-input100 validate-input">
+                      <span>&nbsp &nbsp Choose Event</span>
+                      <select id="event-del-li" class="input100" name="events" style="border-style: none;">
+                      </select>
+                    </div>
+                    <!-- Text Field -->
+                    <div class="wrap-input100">
+                      <input id="title-fld" class="input100" type="text" name="title" placeholder="Title">
+                      <span class="focus-input100"></span>
+                    </div>
+                    <!-- Text Field -->
+                    <div class="wrap-input100 validate-input">
+                      <input id="title-fld" class="input100" type="date" name="date" placeholder="Date">
+                      <span class="focus-input100"></span>
+                    </div>
+                    <!-- Text Field -->
+                    <div class="wrap-input100 validate-input">
+                      <span>&nbsp &nbsp Main Speaker</span>
+                      <select class="input100" name="cars" id="cars" style="border-style: none;">
+                      </select>
+                    </div>
+                    <!-- Text Field -->
+                    <div class="wrap-input100 validate-input">
+                      <span>&nbsp &nbsp Other Speakers</span>
+                      <select class="input100" name="cars" id="cars" style="border-style: none;">
+
+                      </select>
+                    </div>
+                    <!-- Text Field -->
+                    <div class="wrap-input100 validate-input">
+                      <span>&nbsp &nbsp Students</span>
+                      <input id="title-fld" class="input100" type="text" name="date" placeholder="Students">
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="container-login100-form-btn">
+                      <button class="login100-form-btn" type="button" style="background-color:#ffea80">
+                        Edit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Delete Modal -->
+                <div id="delete-event-modal" class="modal-window">
+                  <div>
+                    <a href="#" title="Close" class="modal-close">Close</a>
+                    <h1>Delete Event</h1>
+                    <!-- Text Field -->
+                    <div class="wrap-input100 validate-input">
+                      <span>&nbsp &nbsp Choose Event</span>
+                      <select id="event-del-li" class="input100" name="events" style="border-style: none;">
+                      </select>
+                    </div>
+                    <!-- Submit -->
+                    <div class="container-login100-form-btn">
+                      <button class="login100-form-btn" type="button" style="background-color:#ff7976">
+                        Delete
                       </button>
                     </div>
                   </div>
@@ -544,9 +615,11 @@
   <script src="./../vendor/bootstrap/js/bootstrap.js"></script>
   <script src="./../vendor/bootstrap/js/popper.js"></script>
   <script src="./../vendor/bootstrap/js/bootstrap-modal.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="./../js/dashboardM.js"></script>
-  <script src="./../js/httpRequest.js"></script>
-  <script src="./../js/dashboard.js"></script>
+  <script src="../js/httpRequest.js"></script>
+  <script src="../js/dashboard.js"></script>
 
 </body>
 

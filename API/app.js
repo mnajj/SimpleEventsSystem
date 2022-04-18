@@ -8,6 +8,8 @@ const cors = require('cors');
 
 const authRouter = require('./Routers/authRouter');
 const eventRouter = require('./Routers/eventRouter');
+const studentRouter = require('./Routers/studentRouter')
+const speakerRouter = require('./Routers/speakerRouter');
 
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING)
   .then(() => {
@@ -33,6 +35,8 @@ app.use((request, response, next) => {
 // Routers
 app.use(authRouter);
 app.use(eventRouter);
+app.use(studentRouter);
+app.use(speakerRouter);
 
 // Not Found MW
 app.use((request, response) => {

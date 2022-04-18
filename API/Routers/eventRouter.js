@@ -17,6 +17,7 @@ router.route('/event')
     body("otherSpeakers").isArray().withMessage('Other speaker ids should be array of int'),
     body("students").isArray().withMessage('students ids should be array of int')
   ],
-    controller.addEvent);
+    controller.addEvent)
+    .delete(controller.deleteEvent);
 
 module.exports = router;
