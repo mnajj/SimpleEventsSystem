@@ -18,6 +18,7 @@ router.route('/event')
     body("students").isArray().withMessage('students ids should be array of int')
   ],
     controller.addEvent)
+    .put(controller.updateEventByTitle)
     .delete(controller.deleteEvent);
 
 module.exports = router;

@@ -20,11 +20,11 @@ module.exports.getEventsData = (request, response, next) => {
       .catch(error => next(error));
   } else if (request.body.role == 'admin') {
     Event.find()
-    .populate('mainSpeaker')
-    .populate('otherSpeakers')
-    .populate('students')
-    .then(data => response.status(200).json({ data }))
-    .catch(error => next(error));
+      .populate('mainSpeaker')
+      .populate('otherSpeakers')
+      .populate('students')
+      .then(data => response.status(200).json({ data }))
+      .catch(error => next(error));
   } else {
     next(new Error('undefined role'));
   }
@@ -53,11 +53,51 @@ module.exports.addEvent = (request, response, next) => {
 }
 
 module.exports.deleteEvent = (request, response, next) => {
-  Event.remove({title: request.body.title}, (error) => {
+  Event.remove({ title: request.body.title }, (error) => {
     if (!error) {
       response.status(200).json({ message: "Event Deleted Successfully!" });
     } else {
       next(new Error("Can't delete Event from system"));
     }
   });
+}
+
+module.exports.updateEventByTitle = async (request, response, next) => {
+  if (request.body.flag != undefined) {
+    try {
+      let event = await Event.findOne({ title: request.body.title });
+      if (request.body.otherSpeakers != undefined) {
+        for (let i = 0; i < request.body.otherSpeakers.length; i++) {
+          if (!event.otherSpeakers.includes(request.body.otherSpeakers[i])) {
+            event.otherSpeakers.push(request.body.otherSpeakers[i]);
+          }
+        }
+      }
+      if (request.body.students != undefined) {
+        for (let i = 0; i < request.body.students.length; i++) {
+          if (!event.students.includes(request.body.students[i])) {
+            event.students.push(request.body.students[i]);
+          }
+        }
+      }
+      console.log(event);
+      event.save();
+      response.status(200).json({ message: "Event members Updated Successfully!" });
+    } catch (error) {
+      next(new Error(error));
+    }
+
+  } else {
+    Event.findOneAndUpdate({ title: request.body.oldTitle }, request.body, { new: true }, (error, doc) => {
+      if (!error) {
+        if (doc != null) {
+          response.status(200).json({ message: "Event Updated Successfully!" });
+        } else {
+          next(new Error("Can't find event"));
+        }
+      } else {
+        next(new Error(error));
+      }
+    });
+  }
 }

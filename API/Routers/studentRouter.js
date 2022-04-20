@@ -16,6 +16,6 @@ router.route('/student')
       body("us-role").equals('student').withMessage('Invalid system role')
     ],
     controller.addStudent)
+  .put(controller.updateStudent)
   .delete(controller.deleteStudent);
-
 module.exports = router;

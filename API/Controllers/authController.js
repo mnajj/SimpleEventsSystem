@@ -54,19 +54,28 @@ module.exports.login = (request, response, next) => {
             }
           });
       } else {
-        Student.findOne({ email: request.body.email, password: request.body.password })
+        Student.findOne({ email: request.body.email })
           .then(data => {
             if (data == null)
-              throw new Error("userName and password incorrect");
-            token = jwt.sign({
-              email: data.email,
-              password: data.password,
-              id: data.id,
-              role: "student"
-            },
-              process.env.JWT_KEY,
-              { expiresIn: "1h" });
-            response.status(200).json({ msg: "login succeeded!", token });
+              throw new Error("userName or password incorrect");
+            data.comparePassword(request.body.password, function (err, isMatch) {
+              if (err) {
+                throw new Error(err.message);
+              }
+              if (isMatch) {
+                token = jwt.sign({
+                  email: data.email,
+                  password: data.password,
+                  id: data.id,
+                  role: "student"
+                },
+                  process.env.JWT_KEY,
+                  { expiresIn: "1h" });
+                response.status(200).json({ msg: "login succeeded!", token });
+              } else {
+                next("userName or password incorrect");
+              }
+            });
           })
           .catch(error => next(error));
       }
