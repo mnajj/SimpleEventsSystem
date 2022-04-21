@@ -18,6 +18,7 @@ router.route('/speaker')
       body("us-role").equals('speaker').withMessage('Invalid system role')
     ],
     controller.addSpeaker)
+    .put(controller.updateSpeaker)
   .delete(controller.deleteSpeaker);
 
 module.exports = router;
