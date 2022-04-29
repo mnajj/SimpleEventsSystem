@@ -1,0 +1,13 @@
+<div class="d-flex justify-content-center align-items-center">
+  <h1>Log In</h1>
+  <div>
+    <input type="text" [(ngModel)]="email" pInputText placeholder="Enail" />
+    <br>
+    <p-password [(ngModel)]="password" placeholder="Password"></p-password>
+  </div>
+  <div>
+    <a class="btn btn-outline-success" (click)="logIn()">Log In</a>
+    <a class="btn btn-outline-secondary" routerLink="/signup">Sign Up</a>
+    <a>Sign Up</a>
+  </div>
+</div>
