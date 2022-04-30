@@ -9,11 +9,14 @@ import { LogInService } from './log-in.service';
 export class LogInComponent implements OnInit {
   public email: string = '';
   public password: string = '';
+  public incorrect: boolean = false;
   constructor(private logInService: LogInService) {}
 
   ngOnInit(): void {}
 
   logIn() {
-    this.logInService.logIn(this.email, this.password);
+    const res: boolean = this.logInService.logIn(this.email, this.password);
+    console.log(res);
+    if (res == false) this.incorrect = true;
   }
 }
