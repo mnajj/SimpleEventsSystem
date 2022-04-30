@@ -1,13 +1,22 @@
-<div class="d-flex justify-content-center align-items-center">
-  <h1>Log In</h1>
-  <div>
-    <input type="text" [(ngModel)]="email" pInputText placeholder="Enail" />
+<div class="d-flex justify-content-center align-items-center mt-5">
+  <div class="shadow p-3 mb-5 bg-white rounded w-25 p-3">
+    <div class="d-flex justify-content-center align-items-center">
+      <h1>Log In</h1>
+    </div>
     <br>
-    <p-password [(ngModel)]="password" placeholder="Password"></p-password>
-  </div>
-  <div>
-    <a class="btn btn-outline-success" (click)="logIn()">Log In</a>
-    <a class="btn btn-outline-secondary" routerLink="/signup">Sign Up</a>
-    <a>Sign Up</a>
+    <div class="d-flex justify-content-center align-items-center">
+      <div>
+        <input type="text" [(ngModel)]="email" pInputText placeholder="Email" />
+        <br><br>
+        <p-password [(ngModel)]="password" placeholder="Password"></p-password>
+      </div>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="d-flex justify-content-around">
+        <a class="btn btn-outline-success mr2" (click)="logIn()">Log In</a>
+        <a class="btn btn-outline-warning" routerLink="/signup">Sign Up</a>
+      </div>
+    </div>
   </div>
 </div>
