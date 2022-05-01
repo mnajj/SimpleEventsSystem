@@ -9,21 +9,21 @@ module.exports.getEventsData = (request, response, next) => {
       .populate('mainSpeaker')
       .populate('otherSpeakers')
       .populate('students')
-      .then(data => response.status(200).json({ data }))
+      .then(data => response.status(200).json(data))
       .catch(error => next(error));
   } else if (request.body.role == 'student') {
     Event.find({ students: request.body.id })
       .populate('mainSpeaker')
       .populate('otherSpeakers')
       .populate('students')
-      .then(data => response.status(200).json({ data }))
+      .then(data => response.status(200).json(data))
       .catch(error => next(error));
   } else if (request.body.role == 'admin') {
     Event.find()
       .populate('mainSpeaker')
       .populate('otherSpeakers')
       .populate('students')
-      .then(data => response.status(200).json({ data }))
+      .then(data => response.status(200).json(data))
       .catch(error => next(error));
   } else {
     next(new Error('undefined role'));

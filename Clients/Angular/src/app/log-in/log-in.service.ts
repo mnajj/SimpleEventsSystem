@@ -23,7 +23,7 @@ export class LogInService {
         (res) => {
           if (res.status == 200) {
             this.saveAccessTokenToLocalStorage(res.body.token);
-            this.router.navigate(['/signup']);
+            this.router.navigate(['/home']);
             return true;
           } else {
             console.log(res.body);
