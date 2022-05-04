@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfilePageComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];

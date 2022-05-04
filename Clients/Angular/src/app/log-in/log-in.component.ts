@@ -16,7 +16,6 @@ export class LogInComponent implements OnInit {
 
   logIn() {
     const res: boolean = this.logInService.logIn(this.email, this.password);
-    console.log(res);
     if (res == false) this.incorrect = true;
   }
 }

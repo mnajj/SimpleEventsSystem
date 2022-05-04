@@ -18,7 +18,7 @@ export class SignUpService {
         this.baseUrl + 'signup',
         {
           ...input,
-          role
+          role,
         },
         { observe: 'response' }
       )

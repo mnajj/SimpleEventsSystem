@@ -45,7 +45,7 @@ module.exports.updateStudent = (request, response, next) => {
           data.password = request.body.password;
         }
         data.save();
-        response.status(201).json({ message: "Student info updated!", data });
+        response.status(201).json(data);
       })
       .catch(error => next(error));
   } else if (request.body.role == 'admin') {
