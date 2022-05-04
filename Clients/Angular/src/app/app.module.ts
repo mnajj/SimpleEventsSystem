@@ -11,6 +11,7 @@ import { HomePageModule } from './home-page/home-page.module';
 import { ProfileModule } from './profile/profile.module';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthService } from './auth/auth.service';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,13 +19,14 @@ import { AuthService } from './auth/auth.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    //
+    // Core
     CoreModule,
     //
     LogInModule,
     SignUpModule,
     HomePageModule,
     ProfileModule,
+    AdminModule,
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent],
