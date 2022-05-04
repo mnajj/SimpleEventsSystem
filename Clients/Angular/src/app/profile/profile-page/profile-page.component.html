@@ -1,1 +1,25 @@
-<p>profile-page works!</p>
+<div class="d-flex justify-content-center align-items-center mt-5">
+  <div class="shadow p-3 mb-5 bg-white rounded w-25 p-3">
+    <div class="d-flex justify-content-center align-items-center">
+      <h1 *ngIf="isEditMode == false">Info</h1>
+      <h1 *ngIf="isEditMode">Edit</h1>
+    </div>
+    <br>
+    <div *ngIf="isEditMode == false" class="d-flex justify-content-center align-items-center">
+      <div>
+        <br><br>
+      </div>
+    </div>
+    <div *ngIf="isEditMode" class="d-flex justify-content-center align-items-center">
+      <div>
+        <br><br>
+      </div>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="d-flex justify-content-around">
+        <a class="btn btn-outline-warning">Edit</a>
+      </div>
+    </div>
+  </div>
+</div>
