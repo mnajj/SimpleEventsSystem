@@ -1,4 +1,5 @@
-<div class="d-flex justify-content-center align-items-center mt-5">
+<!-- Main -->
+<div *ngIf="isMain" class="d-flex justify-content-center align-items-center mt-5">
   <div class="shadow p-3 mb-5 bg-white rounded p-3">
     <div class="d-flex justify-content-center align-items-center">
       <h1>ِAdmin Board</h1>
@@ -7,9 +8,12 @@
     <div class="d-flex justify-content-center align-items-center">
       <div>
         <h1 class="text-muted">Events</h1>
-        <button class="my-btn  p-button-success" pButton type="button" label="Add Event"></button>
-        <button class="my-btn p-button-warning" pButton type="button" label="Edit Event"></button>
-        <button class="my-btn p-button-danger" pButton type="button" label="Remove Event"></button>
+        <button (click)="showAddEvent()" class="my-btn  p-button-success" pButton type="button"
+          label="Add Event"></button>
+        <button (click)="showEditEvent()" class="my-btn p-button-warning" pButton type="button"
+          label="Edit Event"></button>
+        <button (click)="showDeleteEvent()" class="my-btn p-button-danger" pButton type="button"
+          label="Remove Event"></button>
       </div>
     </div>
     <div class="d-flex justify-content-center align-items-center">
@@ -33,5 +37,33 @@
       <div class="d-flex justify-content-around">
       </div>
     </div>
+  </div>
+</div>
+
+
+
+<!-- Event -->
+
+<!-- Add Event -->
+<div *ngIf="isAddEvent" class="d-flex justify-content-center align-items-center mt-5">
+  <div class="shadow p-3 mb-5 bg-white rounded p-3">
+    <div class="d-flex justify-content-center align-items-center">
+      <h1>Add Event</h1>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center align-items-center">
+      <div>
+        <input type="text" placeholder="Title">
+        <input type="date" placeholder="Date">
+        <ng-select placeholder="Main Speaker" [multiple]="true" [(ngModel)]="selectedEvents">
+          <ng-option *ngFor="let event of eventsList" [value]="event.id" [disabled]="event.disabled">{{event.title}}
+          </ng-option>
+        </ng-select>
+        <input type="text" placeholder="Others Speaker">
+        <input type="text" placeholder="Students">
+        <button (click)="addNewEvent()" class="my-btn p-button-success" pButton type="button" label="Add Event"></button>
+      </div>
+    </div>
+    <br>
   </div>
 </div>
