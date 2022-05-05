@@ -12,9 +12,10 @@ import { ProfileModule } from './profile/profile.module';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthService } from './auth/auth.service';
 import { AdminModule } from './admin/admin.module';
+import { NotFoundPageComponent } from './notFoundPage/not-found-page/not-found-page.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NotFoundPageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
