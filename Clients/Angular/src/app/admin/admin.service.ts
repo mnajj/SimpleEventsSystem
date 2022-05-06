@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SpeakertDto, StudentDto } from '../Dtos';
@@ -32,11 +32,41 @@ export class AdminService {
   }
   // ** //
 
+  // Events Funcs
   addNewEvent(dto: CreateEventDto) {
     const token = this.getUserToken();
     const jwtHeader = this.createTokenHeader(token);
     this.http.post<any>(this.baseUrl + 'event', dto, jwtHeader).subscribe();
   }
+
+  getEvent(eventId: number) {
+    const token = this.getUserToken();
+    let headers_object = {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + token,
+    };
+    const params = new HttpParams().set('eventId', eventId);
+    return this.http.get<EventDto>(this.baseUrl + 'getevent', {
+      headers: headers_object,
+      params: params,
+    });
+  }
+
+  deleteEvent(eventId: number) {
+    const token = this.getUserToken();
+    let headers_object = {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + token,
+    };
+    const params = new HttpParams().set('eventId', eventId);
+    this.http
+      .delete(this.baseUrl + 'event', {
+        headers: headers_object,
+        params: params,
+      })
+      .subscribe();
+  }
+  // ** //
 
   private getUserToken() {
     return window.localStorage.getItem('access-token');

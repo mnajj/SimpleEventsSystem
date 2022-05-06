@@ -23,6 +23,7 @@
     "font-awesome": "^4.7.0",
     "jwt-decode": "^3.1.2",
     "ng-multiselect-dropdown": "^0.3.8",
+    "ng-pick-datetime": "^7.0.0",
     "primeicons": "^5.0.0",
     "primeng": "^13.3.3",
     "rxjs": "~7.5.0",

@@ -3,6 +3,16 @@ const { validationResult } = require("express-validator");
 const Event = require("./../Models/eventModel");
 
 
+module.exports.getEvent = (request, response, next) => {
+  let id = request.query.eventId;
+  Event.find({ _id: id })
+    .populate('mainSpeaker')
+    .populate('otherSpeakers')
+    .populate('students')
+    .then(data => response.status(200).json(data))
+    .catch(error => next(error));
+}
+
 module.exports.getEventsData = (request, response, next) => {
   if (request.body.role == 'speaker') {
     Event.find({ mainSpeaker: request.body.id, otherSpeakers: request.body.id })
@@ -53,7 +63,8 @@ module.exports.addEvent = (request, response, next) => {
 }
 
 module.exports.deleteEvent = (request, response, next) => {
-  Event.remove({ title: request.body.title }, (error) => {
+  let id = request.query.eventId;
+  Event.findOneAndRemove({ _id: id }, (error) => {
     if (!error) {
       response.status(200).json({ message: "Event Deleted Successfully!" });
     } else {

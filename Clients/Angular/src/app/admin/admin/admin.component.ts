@@ -14,6 +14,7 @@ export class AdminComponent implements OnInit {
   // Event
   public title: string = '';
   public date: Date = new Date();
+  public eventId: string = '';
 
   public eventsList: any = [];
   public selectedEvents: any = [];
@@ -41,14 +42,14 @@ export class AdminComponent implements OnInit {
 
   // Data
   getAllEvents() {
-    this.adminService.getAllEvents().subscribe((d) => {
-      this.eventsList = d;
+    this.adminService.getAllEvents().subscribe((data) => {
+      this.eventsList = data;
     });
   }
 
   getAllSpeakers() {
-    this.adminService.getAllSpeakers().subscribe((d) => {
-      this.speakersList = d;
+    this.adminService.getAllSpeakers().subscribe((data) => {
+      this.speakersList = data;
     });
   }
 
@@ -83,5 +84,18 @@ export class AdminComponent implements OnInit {
     console.log(dto);
     this.adminService.addNewEvent(dto);
     this.toggleAddEvent();
+  }
+
+  deleteEvent() {
+    this.adminService.deleteEvent(Number.parseInt(this.eventId));
+  }
+
+  fillSelectedEventData(eventId: number) {
+    this.adminService.getEvent(eventId).subscribe((data) => {
+      this.date = data.date;
+      this.mainSpeakerId = data.mainSpeaker.userName;
+      this.selectedOtherSpeakers = data.otherSpeakers;
+      this.selectedStudents = data.students;
+    });
   }
 }

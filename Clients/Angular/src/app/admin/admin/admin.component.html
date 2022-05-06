@@ -13,7 +13,7 @@
         <button (click)="toggleEditEvent()" class="my-btn p-button-warning" pButton type="button"
           label="Edit Event"></button>
         <button (click)="toggleDeleteEvent()" class="my-btn p-button-danger" pButton type="button"
-          label="Remove Event"></button>
+          label="Delete Event"></button>
       </div>
     </div>
     <div class="d-flex justify-content-center align-items-center">
@@ -21,7 +21,7 @@
         <h1 class="text-muted">Students</h1>
         <button class="my-btn p-button-success" pButton type="button" label="Add Speaker"></button>
         <button class="my-btn p-button-warning" pButton type="button" label="Edit Speaker"></button>
-        <button class="my-btn p-button-danger" pButton type="button" label="Remove Speaker"></button>
+        <button class="my-btn p-button-danger" pButton type="button" label="Delete Speaker"></button>
       </div>
     </div>
     <div class="d-flex justify-content-center align-items-center">
@@ -29,7 +29,7 @@
         <h1 class="text-muted">Speakers</h1>
         <button class="my-btn p-button-success" pButton type="button" label="Add Student"></button>
         <button class="my-btn p-button-warning" pButton type="button" label="Edit Student"></button>
-        <button class="my-btn p-button-danger" pButton type="button" label="Remove Student"></button>
+        <button class="my-btn p-button-danger" pButton type="button" label="Delete Student"></button>
       </div>
     </div>
     <br>
@@ -75,3 +75,61 @@
     <br>
   </div>
 </div>
+<!--  -->
+
+<!-- Edit Event -->
+<div *ngIf="isEditEvent" class="d-flex justify-content-center align-items-center mt-5">
+  <div class="shadow p-3 mb-5 bg-white rounded p-3">
+    <div class="d-flex justify-content-center align-items-center">
+      <h1>Edit Event</h1>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center align-items-center">
+      <div>
+        <ng-select (change)="fillSelectedEventData($event)" placeholder="Choose Event" [(ngModel)]="eventId">
+          <!-- <input type="text"> -->
+          <ng-option *ngFor="let ev of eventsList" [value]="ev._id" [disabled]="ev.disabled">{{ev.title}}
+          </ng-option>
+        </ng-select>
+        <br>
+        <input [(ngModel)]="date" type="date" placeholder="Date">
+        <ng-select placeholder="Main Speaker" [(ngModel)]="mainSpeakerId">
+          <ng-option *ngFor="let sp of speakersList" [value]="sp._id">{{sp.userName}}
+          </ng-option>
+        </ng-select>
+        <ng-select placeholder="Other Speakers" [multiple]="true" [(ngModel)]="selectedOtherSpeakers">
+          <ng-option *ngFor="let sp of speakersList" [value]="sp._id" [disabled]="sp.disabled">{{sp.userName}}
+          </ng-option>
+        </ng-select>
+        <ng-select placeholder="Students" [multiple]="true" [(ngModel)]="selectedStudents">
+          <ng-option *ngFor="let std of studentsList" [value]="std._id" [disabled]="std.disabled">{{std.email}}
+          </ng-option>
+        </ng-select>
+        <button class="my-btn p-button-success" pButton type="button" label="Add Event"></button>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>
+<!--  -->
+<!-- Delete Event -->
+<div *ngIf="isDeleteEvent" class="d-flex justify-content-center align-items-center mt-5">
+  <div class="shadow p-3 mb-5 bg-white rounded p-3">
+    <div class="d-flex justify-content-center align-items-center">
+      <h1>Delete Event</h1>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center align-items-center">
+      <div>
+        <ng-select placeholder="Choose Event" [(ngModel)]="eventId">
+          <ng-option *ngFor="let ev of eventsList" [value]="ev._id" [disabled]="ev.disabled">{{ev.title}}
+          </ng-option>
+        </ng-select>
+        <button (click)="deleteEvent()" class="my-btn p-button-danger" pButton type="button"
+          label="Delete Event"></button>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>
+<!--  -->

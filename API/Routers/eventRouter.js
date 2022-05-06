@@ -7,18 +7,22 @@ const controller = require('../Controllers/eventController');
 
 router.use(authMW);
 
+
+router.route('/getevent').get(controller.getEvent);
+
+
 router.route('/event')
   .get(controller.getEventsData)
   .post(
     [
-    body("title").isString().withMessage("Title should be string"),
-    body("date").isDate().withMessage('Date should be date type'),
-    body("mainSpeaker").isInt().withMessage('Main speaker id should be date int'),
-    body("otherSpeakers").isArray().withMessage('Other speaker ids should be array of int'),
-    body("students").isArray().withMessage('students ids should be array of int')
-  ],
+      body("title").isString().withMessage("Title should be string"),
+      body("date").isDate().withMessage('Date should be date type'),
+      body("mainSpeaker").isInt().withMessage('Main speaker id should be date int'),
+      body("otherSpeakers").isArray().withMessage('Other speaker ids should be array of int'),
+      body("students").isArray().withMessage('students ids should be array of int')
+    ],
     controller.addEvent)
-    .put(controller.updateEventByTitle)
-    .delete(controller.deleteEvent);
+  .put(controller.updateEventByTitle)
+  .delete(controller.deleteEvent);
 
 module.exports = router;
