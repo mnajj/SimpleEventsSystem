@@ -19,7 +19,7 @@ export class AdminComponent implements OnInit {
   public selectedEvents: any = [];
   // Speaker
   public speakersList: any = [];
-  public mainSpeakerId: number = 0;
+  public mainSpeakerId: string = '';
   public selectedOtherSpeakers: any = [];
   // Student
   public studentsList: any = [];
@@ -76,11 +76,12 @@ export class AdminComponent implements OnInit {
     const dto: CreateEventDto = {
       title: this.title,
       date: this.date,
-      mainSpeakerId: this.mainSpeakerId,
+      mainSpeakerId: Number.parseInt(this.mainSpeakerId),
       otherSpeakers: this.selectedOtherSpeakers,
       students: this.selectedStudents,
     };
     console.log(dto);
+    this.adminService.addNewEvent(dto);
     this.toggleAddEvent();
   }
 }

@@ -54,8 +54,9 @@
     <div class="d-flex justify-content-center align-items-center">
       <div>
         <input [(ngModel)]="title" type="text" placeholder="Title">
+        <br>
         <input [(ngModel)]="date" type="date" placeholder="Date">
-        <ng-select placeholder="Main Speaker" [multiple]="true" [(ngModel)]="mainSpeakerId">
+        <ng-select placeholder="Main Speaker" [(ngModel)]="mainSpeakerId">
           <ng-option *ngFor="let sp of speakersList" [value]="sp._id" [disabled]="sp.disabled">{{sp.userName}}
           </ng-option>
         </ng-select>

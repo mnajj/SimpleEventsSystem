@@ -32,7 +32,11 @@ export class AdminService {
   }
   // ** //
 
-  addNewEvent(dto: CreateEventDto) {}
+  addNewEvent(dto: CreateEventDto) {
+    const token = this.getUserToken();
+    const jwtHeader = this.createTokenHeader(token);
+    this.http.post<any>(this.baseUrl + 'event', dto, jwtHeader).subscribe();
+  }
 
   private getUserToken() {
     return window.localStorage.getItem('access-token');

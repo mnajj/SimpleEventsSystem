@@ -32,7 +32,7 @@ module.exports.getEventsData = (request, response, next) => {
 
 module.exports.addEvent = (request, response, next) => {
   let result = validationResult(request);
-  if (!result.isEmpty()) {
+  if (result.isEmpty()) {
     let message = result.array().reduce((current, error) => current + error.msg + " ", " ");
     let error = new Error(message);
     error.status = 422;
@@ -41,7 +41,7 @@ module.exports.addEvent = (request, response, next) => {
   let newEvent = new Event({
     title: request.body.title,
     date: request.body.date,
-    mainSpeaker: request.body.mainSpeaker,
+    mainSpeaker: request.body.mainSpeakerId,
     otherSpeakers: request.body.otherSpeakers,
     students: request.body.students,
   });
