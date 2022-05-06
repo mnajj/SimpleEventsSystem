@@ -8,6 +8,7 @@ const controller = require('../Controllers/studentController');
 router.use(authMW);
 
 router.route('/student')
+  .get(controller.getStudents)
   .post(
     [
       body("id").isNumeric().withMessage("Id should be number"),

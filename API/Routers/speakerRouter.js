@@ -8,6 +8,7 @@ const controller = require('../Controllers/speakerController');
 router.use(authMW);
 
 router.route('/speaker')
+  .get(controller.getSpeakers)
   .post(
     [
       body("id").isNumeric().withMessage("Id should be number"),

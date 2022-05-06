@@ -12,6 +12,11 @@ module.exports.deleteStudent = (request, response, next) => {
       }
     });
 }
+module.exports.getStudents = (request, response, next) => {
+  Student.find({})
+    .then(data => response.status(201).json(data))
+    .catch(error => next(error));
+}
 
 module.exports.addStudent = (request, response, next) => {
   let result = validationResult(request);

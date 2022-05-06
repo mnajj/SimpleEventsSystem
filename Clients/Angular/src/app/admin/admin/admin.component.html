@@ -19,17 +19,17 @@
     <div class="d-flex justify-content-center align-items-center">
       <div>
         <h1 class="text-muted">Students</h1>
-        <button class="my-btn p-button-success" pButton type="button" label="Add Event"></button>
-        <button class="my-btn p-button-warning" pButton type="button" label="Edit Event"></button>
-        <button class="my-btn p-button-danger" pButton type="button" label="Remove Event"></button>
+        <button class="my-btn p-button-success" pButton type="button" label="Add Speaker"></button>
+        <button class="my-btn p-button-warning" pButton type="button" label="Edit Speaker"></button>
+        <button class="my-btn p-button-danger" pButton type="button" label="Remove Speaker"></button>
       </div>
     </div>
     <div class="d-flex justify-content-center align-items-center">
       <div>
         <h1 class="text-muted">Speakers</h1>
-        <button class="my-btn p-button-success" pButton type="button" label="Add Event"></button>
-        <button class="my-btn p-button-warning" pButton type="button" label="Edit Event"></button>
-        <button class="my-btn p-button-danger" pButton type="button" label="Remove Event"></button>
+        <button class="my-btn p-button-success" pButton type="button" label="Add Student"></button>
+        <button class="my-btn p-button-warning" pButton type="button" label="Edit Student"></button>
+        <button class="my-btn p-button-danger" pButton type="button" label="Remove Student"></button>
       </div>
     </div>
     <br>
@@ -55,13 +55,20 @@
       <div>
         <input type="text" placeholder="Title">
         <input type="date" placeholder="Date">
-        <ng-select placeholder="Main Speaker" [multiple]="true" [(ngModel)]="selectedEvents">
-          <ng-option *ngFor="let event of eventsList" [value]="event.id" [disabled]="event.disabled">{{event.title}}
+        <ng-select placeholder="Main Speaker" [multiple]="true" [(ngModel)]="selectedSpeakers">
+          <ng-option *ngFor="let sp of speakersList" [value]="sp._id" [disabled]="sp.disabled">{{sp.userName}}
           </ng-option>
         </ng-select>
-        <input type="text" placeholder="Others Speaker">
-        <input type="text" placeholder="Students">
-        <button (click)="addNewEvent()" class="my-btn p-button-success" pButton type="button" label="Add Event"></button>
+        <ng-select placeholder="Other Speakers" [multiple]="true" [(ngModel)]="selectedOtherSpeakers">
+          <ng-option *ngFor="let sp of speakersList" [value]="sp._id" [disabled]="sp.disabled">{{sp.userName}}
+          </ng-option>
+        </ng-select>
+        <ng-select placeholder="Students" [multiple]="true" [(ngModel)]="selectedStudents">
+          <ng-option *ngFor="let std of studentsList" [value]="std._id" [disabled]="std.disabled">{{std.email}}
+          </ng-option>
+        </ng-select>
+        <button (click)="addNewEvent()" class="my-btn p-button-success" pButton type="button"
+          label="Add Event"></button>
       </div>
     </div>
     <br>

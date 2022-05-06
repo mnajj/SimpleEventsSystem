@@ -8,11 +8,12 @@ module.exports = (request, response, next) => {
   } catch (error) {
     next(new Error("Not Authenticated"));
   }
-  if (Object.keys(req.body).length === 0) {
-    next(new Error("Content cannot be empty"));
-    return;
+  if (Object.keys(request.body).length === 0) {
+    // next(new Error("Content cannot be empty"));
+    next();
+  } else {
+    request.body.role = decodedToken.role;
+    request.body.id = decodedToken.id;
+    next();
   }
-  request.body.role = decodedToken.role;
-  request.body.id = decodedToken.id;
-  next();
 }

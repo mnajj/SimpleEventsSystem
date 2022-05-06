@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-admin',
@@ -8,24 +8,51 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class AdminComponent implements OnInit {
   public isMain: boolean = true;
-  // Event Section
-  public eventsList: any = [
-    {
-      title: 'First',
-    },
-    {
-      title: 'Second',
-    },
-  ];
+
+  // Data
+  // Event
+  public eventsList: any = [];
   public selectedEvents: any = [];
+  // Speaker
+  public speakersList: any = [];
+  public selectedSpeakers: any = [];
+  public selectedOtherSpeakers: any = [];
+  // Student
+  public studentsList: any = [];
+  public selectedStudents: any = [];
 
   public isAddEvent: boolean = false;
   public isEditEvent: boolean = false;
   public isDeleteEvent: boolean = false;
-  constructor() {}
 
-  ngOnInit(): void {}
+  constructor(private adminService: AdminService) {}
 
+  ngOnInit(): void {
+    this.getAllEvents();
+    this.getAllSpeakers();
+    this.getAllStudents();
+  }
+
+  // Data
+  getAllEvents() {
+    this.adminService.getAllEvents().subscribe((d) => {
+      this.eventsList = d;
+    });
+  }
+
+  getAllSpeakers() {
+    this.adminService.getAllSpeakers().subscribe((d) => {
+      this.speakersList = d;
+    });
+  }
+
+  getAllStudents() {
+    this.adminService.getAllStudents().subscribe((data) => {
+      this.studentsList = data;
+    });
+  }
+
+  // Toogels
   showAddEvent() {
     this.isMain = false;
     this.isAddEvent = true;
@@ -40,6 +67,6 @@ export class AdminComponent implements OnInit {
   }
 
   addNewEvent() {
-    console.log(this.selectedEvents[0].$ngOptionLabel);
+    console.log(this.selectedSpeakers);
   }
 }

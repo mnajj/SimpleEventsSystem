@@ -13,6 +13,15 @@ module.exports.deleteSpeaker = (request, response, next) => {
     });
 }
 
+module.exports.getSpeakers = (request, response, next) => {
+  console.log('here');
+  Speaker.find({})
+    .then(data => {
+      response.status(200).json(data);
+    })
+    .catch(error => next(error));
+}
+
 module.exports.addSpeaker = (request, response, next) => {
   let result = validationResult(request);
   if (!result.isEmpty()) {
