@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SpeakertDto, StudentDto } from '../Dtos';
+import { CreateEventDto } from '../Dtos/createEventDto.dto';
 import { EventDto } from '../Dtos/EventDto.dto';
 
 @Injectable({
@@ -29,6 +30,9 @@ export class AdminService {
     const jwtHeader = this.createTokenHeader(token);
     return this.http.get<StudentDto[]>(this.baseUrl + 'student', jwtHeader);
   }
+  // ** //
+
+  addNewEvent(dto: CreateEventDto) {}
 
   private getUserToken() {
     return window.localStorage.getItem('access-token');

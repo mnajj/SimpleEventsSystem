@@ -8,11 +8,11 @@
     <div class="d-flex justify-content-center align-items-center">
       <div>
         <h1 class="text-muted">Events</h1>
-        <button (click)="showAddEvent()" class="my-btn  p-button-success" pButton type="button"
+        <button (click)="toggleAddEvent()" class="my-btn  p-button-success" pButton type="button"
           label="Add Event"></button>
-        <button (click)="showEditEvent()" class="my-btn p-button-warning" pButton type="button"
+        <button (click)="toggleEditEvent()" class="my-btn p-button-warning" pButton type="button"
           label="Edit Event"></button>
-        <button (click)="showDeleteEvent()" class="my-btn p-button-danger" pButton type="button"
+        <button (click)="toggleDeleteEvent()" class="my-btn p-button-danger" pButton type="button"
           label="Remove Event"></button>
       </div>
     </div>
@@ -53,9 +53,9 @@
     <br>
     <div class="d-flex justify-content-center align-items-center">
       <div>
-        <input type="text" placeholder="Title">
-        <input type="date" placeholder="Date">
-        <ng-select placeholder="Main Speaker" [multiple]="true" [(ngModel)]="selectedSpeakers">
+        <input [(ngModel)]="title" type="text" placeholder="Title">
+        <input [(ngModel)]="date" type="date" placeholder="Date">
+        <ng-select placeholder="Main Speaker" [multiple]="true" [(ngModel)]="mainSpeakerId">
           <ng-option *ngFor="let sp of speakersList" [value]="sp._id" [disabled]="sp.disabled">{{sp.userName}}
           </ng-option>
         </ng-select>

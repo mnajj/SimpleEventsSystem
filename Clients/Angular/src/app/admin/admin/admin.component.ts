@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CreateEventDto } from '../../Dtos/createEventDto.dto';
 import { AdminService } from '../admin.service';
 
 @Component({
@@ -11,16 +12,21 @@ export class AdminComponent implements OnInit {
 
   // Data
   // Event
+  public title: string = '';
+  public date: Date = new Date();
+
   public eventsList: any = [];
   public selectedEvents: any = [];
   // Speaker
   public speakersList: any = [];
-  public selectedSpeakers: any = [];
+  public mainSpeakerId: number = 0;
   public selectedOtherSpeakers: any = [];
   // Student
   public studentsList: any = [];
   public selectedStudents: any = [];
+  // *** //
 
+  // Toggeles
   public isAddEvent: boolean = false;
   public isEditEvent: boolean = false;
   public isDeleteEvent: boolean = false;
@@ -53,20 +59,28 @@ export class AdminComponent implements OnInit {
   }
 
   // Toogels
-  showAddEvent() {
-    this.isMain = false;
-    this.isAddEvent = true;
+  toggleAddEvent() {
+    this.isMain = !this.isMain;
+    this.isAddEvent = !this.isAddEvent;
   }
-  showEditEvent() {
-    this.isMain = false;
-    this.isEditEvent = true;
+  toggleEditEvent() {
+    this.isMain = !this.isMain;
+    this.isEditEvent = !this.isEditEvent;
   }
-  showDeleteEvent() {
-    this.isMain = false;
-    this.isDeleteEvent = true;
+  toggleDeleteEvent() {
+    this.isMain = !this.isMain;
+    this.isDeleteEvent = !this.isDeleteEvent;
   }
 
   addNewEvent() {
-    console.log(this.selectedSpeakers);
+    const dto: CreateEventDto = {
+      title: this.title,
+      date: this.date,
+      mainSpeakerId: this.mainSpeakerId,
+      otherSpeakers: this.selectedOtherSpeakers,
+      students: this.selectedStudents,
+    };
+    console.log(dto);
+    this.toggleAddEvent();
   }
 }
