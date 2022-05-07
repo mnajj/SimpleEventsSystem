@@ -18,15 +18,18 @@
     </div>
     <div class="d-flex justify-content-center align-items-center">
       <div>
-        <h1 class="text-muted">Students</h1>
-        <button class="my-btn p-button-success" pButton type="button" label="Add Speaker"></button>
-        <button class="my-btn p-button-warning" pButton type="button" label="Edit Speaker"></button>
-        <button class="my-btn p-button-danger" pButton type="button" label="Delete Speaker"></button>
+        <h1 class="text-muted">Speakers</h1>
+        <button (click)="toggleAddSpeaker()" class="my-btn p-button-success" pButton type="button"
+          label="Add Speaker"></button>
+        <button (click)="toggleEditSpeaker()" class="my-btn p-button-warning" pButton type="button"
+          label="Edit Speaker"></button>
+        <button (click)="toggleDeleteSpeaker()" class="my-btn p-button-danger" pButton type="button"
+          label="Delete Speaker"></button>
       </div>
     </div>
     <div class="d-flex justify-content-center align-items-center">
       <div>
-        <h1 class="text-muted">Speakers</h1>
+        <h1 class="text-muted">Students</h1>
         <button class="my-btn p-button-success" pButton type="button" label="Add Student"></button>
         <button class="my-btn p-button-warning" pButton type="button" label="Edit Student"></button>
         <button class="my-btn p-button-danger" pButton type="button" label="Delete Student"></button>
@@ -111,6 +114,37 @@
     <br>
   </div>
 </div>
+<!--  -->
+
+<!-- SPEAKER -->
+<!-- Add Speaker -->
+<div *ngIf="isAddSpeaker" class="d-flex justify-content-center align-items-center mt-5">
+  <div class="shadow p-3 mb-5 bg-white rounded p-3">
+    <div class="d-flex justify-content-center align-items-center">
+      <h1>Delete Event</h1>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center align-items-center">
+      <div>
+        <input type="text" [(ngModel)]="speakerEmail" pInputText placeholder="Email" />
+        <br><br>
+        <p-password [(ngModel)]="speakerPassword" placeholder="Password"></p-password>
+        <br>
+        <br>
+        <input type="text" [(ngModel)]="speakerUserName" pInputText placeholder="UserName" />
+        <br><br>
+        <input type="text" [(ngModel)]="speakerAddress" pInputText placeholder="Address" />
+      </div>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center align-items-center">
+      <button (click)="addSpeaker()" class="my-btn p-button-success" pButton type="button"
+        label="Add Speaker"></button>
+    </div>
+  </div>
+  <br>
+</div>
+<br>
 <!--  -->
 <!-- Delete Event -->
 <div *ngIf="isDeleteEvent" class="d-flex justify-content-center align-items-center mt-5">

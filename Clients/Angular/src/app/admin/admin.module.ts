@@ -4,6 +4,8 @@ import { ButtonModule } from 'primeng/button';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { PasswordModule } from 'primeng/password';
+import { InputTextModule } from 'primeng/inputtext';
 
 import { AdminComponent } from './admin/admin.component';
 import { AdminService } from './admin.service';
@@ -17,6 +19,8 @@ import { AdminService } from './admin.service';
     FormsModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    PasswordModule,
+    InputTextModule,
   ],
   providers: [AdminService],
 })

@@ -26,6 +26,7 @@ module.exports.addSpeaker = (request, response, next) => {
   let result = validationResult(request);
   if (!result.isEmpty()) {
     let message = result.array().reduce((current, error) => current + error.msg + " ", " ");
+    console.log(message)
     let error = new Error(message);
     error.status = 422;
     throw error;

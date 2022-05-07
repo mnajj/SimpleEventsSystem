@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SpeakertDto, StudentDto } from '../Dtos';
+import { CreateSpeakerDto, SpeakertDto, StudentDto } from '../Dtos';
 import { CreateEventDto } from '../Dtos/createEventDto.dto';
 import { EventDto } from '../Dtos/EventDto.dto';
 
@@ -67,6 +67,13 @@ export class AdminService {
       .subscribe();
   }
   // ** //
+
+  // Speaker Funcs
+  addSpeaker(dto: CreateSpeakerDto) {
+    const token = this.getUserToken();
+    const jwtHeader = this.createTokenHeader(token);
+    this.http.post<any>(this.baseUrl + 'speaker', dto, jwtHeader).subscribe();
+  }
 
   private getUserToken() {
     return window.localStorage.getItem('access-token');

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CreateSpeakerDto } from '../../Dtos';
 import { CreateEventDto } from '../../Dtos/createEventDto.dto';
 import { AdminService } from '../admin.service';
 
@@ -8,8 +9,6 @@ import { AdminService } from '../admin.service';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
-  public isMain: boolean = true;
-
   // Data
   // Event
   public title: string = '';
@@ -22,15 +21,24 @@ export class AdminComponent implements OnInit {
   public speakersList: any = [];
   public mainSpeakerId: string = '';
   public selectedOtherSpeakers: any = [];
+  public speakerEmail: string = '';
+  public speakerPassword: string = '';
+  public speakerUserName: string = '';
+  public speakerAddress: string = '';
+
   // Student
   public studentsList: any = [];
   public selectedStudents: any = [];
   // *** //
 
-  // Toggeles
+  // Toggeles Flags
+  public isMain: boolean = true;
   public isAddEvent: boolean = false;
   public isEditEvent: boolean = false;
   public isDeleteEvent: boolean = false;
+  public isAddSpeaker: boolean = false;
+  public isEditSpeaker: boolean = false;
+  public isDeleteSpeaker: boolean = false;
 
   constructor(private adminService: AdminService) {}
 
@@ -73,6 +81,20 @@ export class AdminComponent implements OnInit {
     this.isDeleteEvent = !this.isDeleteEvent;
   }
 
+  toggleAddSpeaker() {
+    this.isMain = !this.isMain;
+    this.isAddSpeaker = !this.isAddSpeaker;
+  }
+  toggleEditSpeaker() {
+    this.isMain = !this.isMain;
+    this.isEditSpeaker = !this.isEditSpeaker;
+  }
+  toggleDeleteSpeaker() {
+    this.isMain = !this.isMain;
+    this.isDeleteEvent = !this.isDeleteEvent;
+  }
+  // *** //
+
   addNewEvent() {
     const dto: CreateEventDto = {
       title: this.title,
@@ -97,5 +119,16 @@ export class AdminComponent implements OnInit {
       this.selectedOtherSpeakers = data.otherSpeakers;
       this.selectedStudents = data.students;
     });
+  }
+
+  // Speaker Funcs
+  addSpeaker() {
+    const dto: CreateSpeakerDto = {
+      email: this.speakerEmail,
+      password: this.speakerPassword,
+      userName: this.speakerUserName,
+      address: this.speakerAddress,
+    };
+    this.adminService.addSpeaker(dto);
   }
 }
