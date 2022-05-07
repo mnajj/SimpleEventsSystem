@@ -72,7 +72,11 @@ export class AdminService {
   addSpeaker(dto: CreateSpeakerDto) {
     const token = this.getUserToken();
     const jwtHeader = this.createTokenHeader(token);
-    this.http.post<any>(this.baseUrl + 'speaker', dto, jwtHeader).subscribe();
+    this.http
+      .post<any>(this.baseUrl + 'speaker', dto, { observe: 'response' })
+      .subscribe((data) => {
+        console.log(data.status);
+      });
   }
 
   private getUserToken() {

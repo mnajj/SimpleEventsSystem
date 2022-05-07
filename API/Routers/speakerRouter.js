@@ -16,7 +16,7 @@ router.route('/speaker')
       body("userName").isString().withMessage('userName should be string'),
       body("password").isString().withMessage('Weak password'),
       body("address").isString().withMessage('Invalid address'),
-      // body("us-role").equals('speaker').withMessage('Invalid system role')
+      body("us-role").equals('speaker').withMessage('Invalid system role')
     ],
     controller.addSpeaker)
   .put(controller.updateSpeaker)
